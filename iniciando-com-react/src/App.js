@@ -1,25 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from "react";
 
-function App() {
+function App(props) {
+  const handleChange = (e) => {
+    console.log(e.target.value);
+  };
+
+  const comboboxCreate = () => {
+    const options = [
+      "Americana",
+      "Santa Bárbara D´Oeste",
+      "Piracicaba",
+      "Limeira",
+      "Nova Odessa",
+      "Campinas",
+    ];
+    const comboBoxOptions = options.map((opc) => (
+      <option key={opc}>{opc}</option>
+    ));
+
+    return <select>{comboBoxOptions}</select>;
+  };
+
+  const MyCombobox = () => comboboxCreate();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <input
+        type="text"
+        className="text-centralizado"
+        value={props.nome}
+        onChange={handleChange}
+      />
+      <h1>
+        Hello {props.nome}. You are {props.idade} yers old
+      </h1>
+
+      <MyCombobox />
+    </Fragment>
   );
 }
 
